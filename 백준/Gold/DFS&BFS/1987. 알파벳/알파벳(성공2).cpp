@@ -1,3 +1,6 @@
+/*
+- visited배열은 필요없다.
+*/
 #include <bits/stdc++.h>
 #define ll long long
 #define pii pair<int, int>
