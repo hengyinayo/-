@@ -56,3 +56,56 @@ int main() {
     }
     return 0;
 }
+
+
+// 다른 답안
+/*
+priority queue를 활용해서 -> 빠지는 건 최소 혹은 최대 숫자가 빠지게
+- Max Heap, Min Heap
+*/
+#include <iostream>
+#include <queue>
+#include <vector>
+using namespace std;
+
+#define MAX_N_K 100'000
+
+bool visited[MAX_N_K+1];
+priority_queue <pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+int start, target;
+
+int bfs() {
+    while(!pq.empty()) {
+        int cnt = pq.top().first;
+        int num = pq.top().second;
+        pq.pop();
+        
+        if (num == target) return cnt;
+
+        if (num * 2 <= MAX_N_K && !visited[num * 2]){
+            pq.push({cnt, num*2});
+            visited[num * 2] = true;
+        }
+
+        if (num + 1 <= MAX_N_K && !visited[num + 1]) {
+            pq.push({cnt+1, num+1});
+            visited[num+1] = true;
+        }
+
+        if (num - 1 >= 0 && !visited[num-1]) {
+            pq.push({cnt+1, num-1});
+            visited[num-1] = true;
+        }
+    }
+    return -1;
+}
+
+int main() {
+    cin >> start >> target;
+
+    pq.push({0, start});
+
+    cout << bfs();
+
+    return 0;
+}
