@@ -1,3 +1,7 @@
+/*
+접근 방법:
+- 배열 2개 만들어서 -> dfs 진행
+*/
 #include <iostream>
 using namespace std;
 
@@ -74,4 +78,5 @@ int main() {
 
     cout << cntNotBlind << " " << cntBlind;
 
+    return 0;
 }
